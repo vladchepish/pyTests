@@ -1,6 +1,5 @@
-from selenium.webdriver.firefox.webdriver import WebDriver
-from group import Group
-from application import Application
+from model.group import Group
+from fixture.application import Application
 
 import pytest
 
