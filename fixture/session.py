@@ -1,5 +1,3 @@
-
-
 class SessionHelper:
 
     def __init__(self, app):
@@ -29,11 +27,18 @@ class SessionHelper:
         return wd.find_element_by_css_selector("form[name='logout'] b").text == "(" + username + ")"
 
     def ensurer_login(self, username, password):
-        if not self.is_logged_in:
-            self.login(username, password)
+        if self.is_logged_in():
+            if self.is_logged_in_as(username):
+                return
+            else:
+                self.logout()
+        self.login(username, password)
 
     def logout(self):
         wd = self.app.wd
         wd.find_element_by_css_selector("form[name='logout'] a").click()
-        if wd.find_element_by_css_selector("form[name='logout'] a").is_displayed():
-            wd.find_element_by_css_selector("form[name='logout'] a").click()
+
+    def ensure_logout(self):
+        wd = self.app.wd
+        if self.is_logged_in():
+            self.logout()
