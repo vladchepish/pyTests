@@ -39,6 +39,5 @@ class SessionHelper:
         wd.find_element_by_css_selector("form[name='logout'] a").click()
 
     def ensure_logout(self):
-        wd = self.app.wd
         if self.is_logged_in():
             self.logout()

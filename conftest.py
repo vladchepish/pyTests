@@ -25,6 +25,7 @@ def stop(request):
         fixture.destroy()
     request.addfinalizer(fin)
 
+
 def pytest_addoption(parser):
     parser.addoption("--browser", action="store", default="chrome")
     parser.addoption("--baseUrl", action="store", default="http://addressbook.u0541324.cp.regruhosting.ru/")
